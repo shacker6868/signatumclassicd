@@ -82,7 +82,7 @@ For windows user, please follow this link "https://www.windowscentral.com/how-in
 
 	qmake
 
-	make -f Makefile.Release
+	make 
 
 # Windows Build Instructions
 ----------------------------
