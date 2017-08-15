@@ -20,7 +20,28 @@ struct SeedSpec6 {
 
 #include "chainparamsseeds.h"
 
-
+void MineGenesis(CBlock genesis){
+    // This will figure out a valid hash and Nonce if you're creating a different genesis block:
+    uint256 hashTarget = CBigNum().SetCompact(Params().ProofOfWorkLimit().GetCompact()).getuint256();
+    printf("Target: %s\n", hashTarget.GetHex().c_str());
+    uint256 newhash = genesis.GetHash();
+    uint256 besthash;
+    memset(&besthash,0xFF,32);
+    while (newhash > hashTarget) {
+    	++genesis.nNonce;
+        if (genesis.nNonce == 0){
+            printf("NONCE WRAPPED, incrementing time");
+            ++genesis.nTime;
+        }
+	newhash = genesis.GetHash();
+	if(newhash < besthash){
+	    besthash=newhash;
+	    printf("New best: %s\n", newhash.GetHex().c_str());
+	}
+    }
+    printf("Found Genesis, Nonce: %ld, Hash: %s\n", genesis.nNonce, genesis.GetHash().GetHex().c_str());
+    printf("Gensis Hash Merkle: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+}
 /////////////////
 //Main network//
 ////////////////
@@ -45,34 +66,35 @@ public:
     CMainParams() {
         pchMessageStart[0] = 0xa6;
         pchMessageStart[1] = 0xf8;
-        pchMessageStart[2] = 0xa6;
-        pchMessageStart[3] = 0x78;
+        pchMessageStart[2] = 0xa8;
+        pchMessageStart[3] = 0x7d;
         vAlertPubKey = ParseHex("0486cce1bac0d543f104cbff2bd23680056a3b9ea05e1137d2ff90eeb5e08472eb500322593a2cb06fbf8297d7beb6cd30cb90f98153b5b7cce1493749e41e0284");
         nDefaultPort = 9999;
         nRPCPort = 9998;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 20);
 
-        const char* pszTimestamp = "Signatum classic OFFICIAL LAUNCHING ON 10/08/2017";
+        const char* pszTimestamp = "Signatum classic OFFICIAL LAUNCHING ON 15/08/2017";
         std::vector<CTxIn> vin;
         vin.resize(1);
         vin[0].scriptSig = CScript() << 0 << CBigNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         std::vector<CTxOut> vout;
         vout.resize(1);
         vout[0].SetEmpty();
-        CTransaction txNew(1, 1502198497, vin, vout, 0);
+        CTransaction txNew(1, 1502778241, vin, vout, 0);
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime    = 1502198497;
+        genesis.nTime    = 1502778241;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce   = 1896426;
+        genesis.nNonce   = 2543574;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x00000e76a978caa31d1fb08ba505defda2f0463f48bc57315dbabb655a93be1e"));
-        assert(genesis.hashMerkleRoot == uint256("0xdaf104a42a601001105c1d515568b9868f83e24bd42808e3d3ffb4132bb8e625"));
+        assert(hashGenesisBlock == uint256("0x0000038a1195f74e025c606e307f398756082d34c88481a836b0728972a03e1e"));
+        assert(genesis.hashMerkleRoot == uint256("0x093b77fea46835a62fa6a821e105aba6e36e94afda4f703d9e42dad9a3d9e2fb"));
 
-        
+         
+
 
         vSeeds.push_back(CDNSSeedData("211.28.146.48", "108.61.185.25"));
 	vSeeds.push_back(CDNSSeedData("pool.minertopia.org", "45.76.149.228"));

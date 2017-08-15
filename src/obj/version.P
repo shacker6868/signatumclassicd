@@ -1,4 +1,4 @@
 obj/version.o: version.cpp version.h clientversion.h \
- /home/shacker/signatum-classic/src/obj/build.h
+ /home/shacker/Signatum-classic-core/signatumclassicd/src/obj/build.h
 version.cpp version.h clientversion.h :
- /home/shacker/signatum-classic/src/obj/build.h :
+ /home/shacker/Signatum-classic-core/signatumclassicd/src/obj/build.h :
