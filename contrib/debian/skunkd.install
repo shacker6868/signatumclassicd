@@ -1,0 +1,2 @@
+debian/bin/signatumclassicd usr/bin
+src/signatumclassicd usr/lib/signatumclassic
