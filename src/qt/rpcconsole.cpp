@@ -263,7 +263,7 @@ void RPCConsole::setClientModel(ClientModel *model)
     ui->trafficGraph->setClientModel(model);
     if(model)
     {
-        // Susigcribe to information, replies, messages, errors
+        // Subscribe to information, replies, messages, errors
         connect(model, SIGNAL(numConnectionsChanged(int)), this, SLOT(setNumConnections(int)));
 
         setNumBlocks(model->getNumBlocks());

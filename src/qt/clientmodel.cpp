@@ -25,12 +25,12 @@ ClientModel::ClientModel(OptionsModel *optionsModel, QObject *parent) :
     pollTimer->start();
     connect(pollTimer, SIGNAL(timeout()), this, SLOT(updateTimer()));
 
-    susigcribeToCoreSignals();
+    subscribeToCoreSignals();
 }
 
 ClientModel::~ClientModel()
 {
-    unsusigcribeFromCoreSignals();
+    unsubscribeFromCoreSignals();
 }
 
 int ClientModel::getNumConnections() const
@@ -179,14 +179,14 @@ static void NotifyAlertChanged(ClientModel *clientmodel, const uint256 &hash, Ch
                               Q_ARG(int, status));
 }
 
-void ClientModel::susigcribeToCoreSignals()
+void ClientModel::subscribeToCoreSignals()
 {
     // Connect signals to client
     uiInterface.NotifyNumConnectionsChanged.connect(boost::bind(NotifyNumConnectionsChanged, this, _1));
     uiInterface.NotifyAlertChanged.connect(boost::bind(NotifyAlertChanged, this, _1, _2));
 }
 
-void ClientModel::unsusigcribeFromCoreSignals()
+void ClientModel::unsubscribeFromCoreSignals()
 {
     // Disconnect signals from client
     uiInterface.NotifyNumConnectionsChanged.disconnect(boost::bind(NotifyNumConnectionsChanged, this, _1));

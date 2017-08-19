@@ -967,7 +967,7 @@ void BitcoinGUI::showNormalIfMinimized(bool fToggleHidden)
         showNormal();
         activateWindow();
     }
-    else if (GUIUtil::isOsigcured(this))
+    else if (GUIUtil::isObscured(this))
     {
         raise();
         activateWindow();

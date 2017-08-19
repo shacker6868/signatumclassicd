@@ -15,4 +15,4 @@ i686-w64-mingw32.static-qmake-qt5 \
 	MINIUPNPC_LIB_PATH=$MXE_LIB_PATH \
 	QMAKE_LRELEASE=/mnt/mxe/usr/i686-w64-mingw32.static/qt5/bin/lrelease signatumclassic-qt.pro
 
-make -f Makefile.Release 
+make -f Makefile

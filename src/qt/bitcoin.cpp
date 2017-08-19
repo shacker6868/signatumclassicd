@@ -205,7 +205,7 @@ int main(int argc, char *argv[])
     if (translator.load(lang_territory, ":/translations/"))
         app.installTranslator(&translator);
 
-    // Susigcribe to global signals from core
+    // Subscribe to global signals from core
     uiInterface.ThreadSafeMessageBox.connect(ThreadSafeMessageBox);
     uiInterface.ThreadSafeAskFee.connect(ThreadSafeAskFee);
     uiInterface.InitMessage.connect(InitMessage);

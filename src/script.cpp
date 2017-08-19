@@ -1721,10 +1721,10 @@ bool IsMine(const CKeyStore &keystore, const CScript& scriptPubKey)
         return keystore.HaveKey(keyID);
     case TX_SCRIPTHASH:
     {
-        CScript susigcript;
-        if (!keystore.GetCScript(CScriptID(uint160(vSolutions[0])), susigcript))
+        CScript subscript;
+        if (!keystore.GetCScript(CScriptID(uint160(vSolutions[0])), subscript))
             return false;
-        return IsMine(keystore, susigcript);
+        return IsMine(keystore, subscript);
     }
     case TX_MULTISIG:
     {
@@ -1889,19 +1889,19 @@ bool SignSignature(const CKeyStore &keystore, const CScript& fromPubKey, CTransa
 
     if (whichType == TX_SCRIPTHASH)
     {
-        // Solver returns the susigcript that need to be evaluated;
+        // Solver returns the subscript that need to be evaluated;
         // the final scriptSig is the signatures from that
-        // and then the serialized susigcript:
-        CScript susigcript = txin.scriptSig;
+        // and then the serialized subscript:
+        CScript subscript = txin.scriptSig;
 
-        // Recompute txn hash using susigcript in place of scriptPubKey:
-        uint256 hash2 = SignatureHash(susigcript, txTo, nIn, nHashType);
+        // Recompute txn hash using subscript in place of scriptPubKey:
+        uint256 hash2 = SignatureHash(subscript, txTo, nIn, nHashType);
 
         txnouttype subType;
         bool fSolved =
-            Solver(keystore, susigcript, hash2, nHashType, txin.scriptSig, subType) && subType != TX_SCRIPTHASH;
-        // Append serialized susigcript whether or not it is completely signed:
-        txin.scriptSig << static_cast<valtype>(susigcript);
+            Solver(keystore, subscript, hash2, nHashType, txin.scriptSig, subType) && subType != TX_SCRIPTHASH;
+        // Append serialized subscript whether or not it is completely signed:
+        txin.scriptSig << static_cast<valtype>(subscript);
         if (!fSolved) return false;
     }
 
@@ -2101,8 +2101,8 @@ unsigned int CScript::GetSigOpCount(const CScript& scriptSig) const
     }
 
     /// ... and return its opcount:
-    CScript susigcript(data.begin(), data.end());
-    return susigcript.GetSigOpCount(true);
+    CScript subscript(data.begin(), data.end());
+    return subscript.GetSigOpCount(true);
 }
 
 bool CScript::IsPayToScriptHash() const

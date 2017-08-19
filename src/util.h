@@ -30,7 +30,7 @@
 #include <stdint.h>
 
 class uint256;
-                            //12750000 coin supply in POW
+
 static const int64_t COIN = 100000000;
 static const int64_t CENT = 1000000;
 

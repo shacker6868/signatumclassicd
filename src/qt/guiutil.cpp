@@ -234,7 +234,7 @@ bool checkPoint(const QPoint &p, const QWidget *w)
     return atW->topLevelWidget() == w;
 }
 
-bool isOsigcured(QWidget *w)
+bool isObscured(QWidget *w)
 {
     return !(checkPoint(QPoint(0, 0), w)
         && checkPoint(QPoint(w->width() - 1, 0), w)

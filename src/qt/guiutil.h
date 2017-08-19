@@ -70,7 +70,7 @@ namespace GUIUtil
     Qt::ConnectionType blockingGUIThreadConnection();
 
     // Determine whether a widget is hidden behind other windows
-    bool isOsigcured(QWidget *w);
+    bool isObscured(QWidget *w);
 
     // Open debug.log
     void openDebugLogfile();

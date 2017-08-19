@@ -94,11 +94,10 @@ public:
         assert(genesis.hashMerkleRoot == uint256("0x093b77fea46835a62fa6a821e105aba6e36e94afda4f703d9e42dad9a3d9e2fb"));
 
          
-
-
         vSeeds.push_back(CDNSSeedData("211.28.146.48", "108.61.185.25"));
 	vSeeds.push_back(CDNSSeedData("pool.minertopia.org", "45.76.149.228"));
-	vSeeds.push_back(CDNSSeedData("74.208.43.97", "74.208.166.29"));
+	vSeeds.push_back(CDNSSeedData("74.208.43.97", "profit-pool.org"));
+	vSeeds.push_back(CDNSSeedData("mineme.xyz", "signatumclassic.com"));
     
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 25);
@@ -145,16 +144,16 @@ public:
         strDataDir = "testnet";
        
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 0;
+        genesis.nNonce = 2543574;
         genesis.nTime    = 1502198497;
   
         hashGenesisBlock = genesis.GetHash();
          
-        //assert(hashGenesisBlock == uint256("0x"));
+        //assert(hashGenesisBlock == uint256("0x0000038a1195f74e025c606e307f398756082d34c88481a836b0728972a03e1e"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("107.22.138.243", "107.22.138.243"));
+        vSeeds.push_back(CDNSSeedData("signatumclassic.org", "pool.minertopia.org"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 65); 
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 196);
@@ -164,7 +163,7 @@ public:
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
 
-        nLastPOWBlock = 0x7fffffff;
+        nLastPOWBlock = 0x000fffff;
     }
     virtual Network NetworkID() const { return CChainParams::TESTNET; }
 };

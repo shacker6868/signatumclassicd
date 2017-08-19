@@ -1,10 +1,10 @@
-# Signatum Classic Skunk Hash Algorithm Official Launch on 10/08/2018
+# Signatumclassic Classic Skunk Hash Algorithm Official Launch on 10/08/2018
 
-Fork Signatum's Skunkhash Raptor Proof of Work Algorithm
+Fork Signatumclassic's Skunkhash Raptor Proof of Work Algorithm
 
 Fixed Skunk Hash Module
 
-Improve Performace of Signatum-Classic's POW Algo 
+Improve Performace of Signatumclassic-Classic's POW Algo 
 ---------------------------------------------------
 Nvidia GPU Mining Effectioncy Improved by 10%
 ---------------------------------------------------
@@ -37,7 +37,7 @@ Premined The First 1000 Blocks
 Official Release At Block 1001
 
 
-# Signatumclassic.conf
+# Signatumclassicclassic.conf
 ----------------------
 
 
@@ -59,11 +59,11 @@ Instand Mine With Your Local Daemon p2p-Port: http://127.0.0.1:9999 Or http://Yo
 -----------------------------
 For windows user, please follow this link "https://www.windowscentral.com/how-install-bash-shell-command-line-windows-10" to install ubuntu bash on windows 10 (only). After installed please follow linux guide !!!
 
-	cd signatumclassicd
+	cd signatumclassicclassicd
 
 	sudo sh build.sh install
 
-# Compile signatumclassicd
+# Compile signatumclassicclassicd
 -------------------------
 
 	cd src/leveldb
@@ -78,7 +78,7 @@ For windows user, please follow this link "https://www.windowscentral.com/how-in
 
 # Compile Linux QT Wallet
 
-	cd signatumclassicd/
+	cd signatumclassicclassicd/
 
 	qmake
 
@@ -115,7 +115,7 @@ sudo port install boost db48 miniupnpc
  _`MacPorts`: http://www.macports.org/install.php
 
 
-# Signatum Classic
+# Signatumclassic Classic
 
 # test
-# signatumclassicd
+# signatumclassicclassicd
