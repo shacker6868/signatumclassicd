@@ -4,10 +4,11 @@ set -e
 
 date
 
+
 #################################################################
 # Update Ubuntu and install prerequisites for running Signatumclassic   #
 #################################################################
-sudo apt-get update
+sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
 #################################################################
 # Build Signatumclassic from source                                     #
 #################################################################
@@ -16,45 +17,34 @@ echo "nproc: $NPROC"
 #################################################################
 # Install all necessary packages for building Signatumclassic           #
 #################################################################
-sudo apt-get install -y qt4-qmake libqt4-dev libminiupnpc-dev libdb++-dev libdb-dev libcrypto++-dev libqrencode-dev libboost-all-dev build-essential libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libssl-dev libdb++-dev libssl-dev ufw git
-sudo add-apt-repository -y ppa:bitcoin/bitcoin
+sudo apt-get install -y qt4-qmake libqt4-dev libminiupnpc-dev libdb++-dev libdb-dev libcrypto++-dev libqrencode-dev libboost-all-dev build-essential libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libssl-dev libdb++-dev libssl-dev ufw git build-essential libtool autotools-dev autoconf pkg-config libssl-dev libboost-all-dev 
+
+sudo apt-get install qt5-default qt5-qmake qtbase5-dev-tools qttools5-dev-tools \
+        build-essential libboost-dev libboost-system-dev \
+        libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev \
+        libssl-dev libdb++-dev libminiupnpc-dev
+
 sudo apt-get update
-sudo apt-get install -y libdb4.8-dev libdb4.8++-dev
 
-# By default, assume running within repo
-repo=$(pwd)
-file=$repo/src/signatumclassicd
-if [ ! -e "$file" ]; then
-	# Now assume running outside and repo has been downloaded and named signatumclassic
-	if [ ! -e "$repo/signatumclassic/build.sh" ]; then
-		# if not, download the repo and name it signatumclassic
-		git clone https://github.com/signatumclassicd/source signatumclassic
-	fi
-	repo=$repo/signatumclassic
-	file=$repo/src/signatumclassicd
-	cd $repo/src/
-fi
-make -j$NPROC -f makefile.unix
+sudo apt-get install \
+      build-essential pkg-config libc6-dev m4 g++-multilib \
+      autoconf libtool ncurses-dev unzip git python \
+      zlib1g-dev wget bsdmainutils automake
 
-cp $repo/src/signatumclassicd /usr/bin/signatumclassicd
+sudo add-apt-repository ppa:bitcoin/bitcoin
 
-################################################################
-# Configure to auto start at boot                                      #
-################################################################
-file=$HOME/.signatumclassic
-if [ ! -e "$file" ]
-then
-        mkdir $HOME/.signatumclassic
-fi
-printf '%s\n%s\n%s\n%s\n' 'daemon=1' 'server=1' 'rpcuser=u' 'rpcpassword=p' | tee $HOME/.signatumclassic/signatumclassic.conf
-file=/etc/init.d/signatumclassic
-if [ ! -e "$file" ]
-then
-        printf '%s\n%s\n' '#!/bin/sh' 'sudo signatumclassicd' | sudo tee /etc/init.d/signatumclassic
-        sudo chmod +x /etc/init.d/signatumclassic
-        sudo update-rc.d signatumclassic defaults
-fi
+sudo apt-get update
 
-/usr/bin/signatumclassicd
-echo "Signatumclassic has been setup successfully and is running..."
+sudo apt-get install -y libdb5.3-dev libdb5.3++-dev
+
+sudo apt-get install libminiupnpc-dev 
+
+sudo apt-get autoremove
+
+
+
+
+
+
+
 
