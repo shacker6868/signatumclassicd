@@ -119,3 +119,4 @@ sudo port install boost db48 miniupnpc
 
 # test
 # signatumclassicclassicd
+# signatumclassicd
