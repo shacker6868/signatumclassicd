@@ -93,14 +93,14 @@ public:
     Object operator()(const CScriptID &scriptID) const {
         Object obj;
         obj.push_back(Pair("isscript", true));
-        CScript subscript;
-        pwalletMain->GetCScript(scriptID, subscript);
+        CScript susigcript;
+        pwalletMain->GetCScript(scriptID, susigcript);
         std::vector<CTxDestination> addresses;
         txnouttype whichType;
         int nRequired;
-        ExtractDestinations(subscript, whichType, addresses, nRequired);
+        ExtractDestinations(susigcript, whichType, addresses, nRequired);
         obj.push_back(Pair("script", GetTxnOutputType(whichType)));
-        obj.push_back(Pair("hex", HexStr(subscript.begin(), subscript.end())));
+        obj.push_back(Pair("hex", HexStr(susigcript.begin(), susigcript.end())));
         Array a;
         BOOST_FOREACH(const CTxDestination& addr, addresses)
             a.push_back(CBitcoinAddress(addr).ToString());

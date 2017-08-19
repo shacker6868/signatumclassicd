@@ -623,9 +623,9 @@ public:
         }
     }
 
-    bool IsSubscribed(unsigned int nChannel);
-    void Subscribe(unsigned int nChannel, unsigned int nHops=0);
-    void CancelSubscribe(unsigned int nChannel);
+    bool IsSusigcribed(unsigned int nChannel);
+    void Susigcribe(unsigned int nChannel, unsigned int nHops=0);
+    void CancelSusigcribe(unsigned int nChannel);
     void CloseSocketDisconnect();
 
     // Denial-of-service detection/prevention

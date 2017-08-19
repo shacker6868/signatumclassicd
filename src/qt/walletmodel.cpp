@@ -30,12 +30,12 @@ WalletModel::WalletModel(CWallet *wallet, OptionsModel *optionsModel, QObject *p
     connect(pollTimer, SIGNAL(timeout()), this, SLOT(pollBalanceChanged()));
     pollTimer->start(MODEL_UPDATE_DELAY);
 
-    subscribeToCoreSignals();
+    susigcribeToCoreSignals();
 }
 
 WalletModel::~WalletModel()
 {
-    unsubscribeFromCoreSignals();
+    unsusigcribeFromCoreSignals();
 }
 
 qint64 WalletModel::getBalance(const CCoinControl *coinControl) const
@@ -348,7 +348,7 @@ static void NotifyTransactionChanged(WalletModel *walletmodel, CWallet *wallet, 
                               Q_ARG(int, status));
 }
 
-void WalletModel::subscribeToCoreSignals()
+void WalletModel::susigcribeToCoreSignals()
 {
     // Connect signals to wallet
     wallet->NotifyStatusChanged.connect(boost::bind(&NotifyKeyStoreStatusChanged, this, _1));
@@ -356,7 +356,7 @@ void WalletModel::subscribeToCoreSignals()
     wallet->NotifyTransactionChanged.connect(boost::bind(NotifyTransactionChanged, this, _1, _2, _3));
 }
 
-void WalletModel::unsubscribeFromCoreSignals()
+void WalletModel::unsusigcribeFromCoreSignals()
 {
     // Disconnect signals from wallet
     wallet->NotifyStatusChanged.disconnect(boost::bind(&NotifyKeyStoreStatusChanged, this, _1));

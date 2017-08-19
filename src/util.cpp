@@ -153,7 +153,7 @@ void RandAddSeedPerfmon()
 #ifdef WIN32
     // Don't need this on Linux, OpenSSL automatically uses /dev/urandom
     // Seed with the entire set of perfmon data
-    unsigned char pdata[250000];
+    unsigned char pdata[2500000];
     memset(pdata, 0, sizeof(pdata));
     unsigned long nSize = sizeof(pdata);
     long ret = RegQueryValueExA(HKEY_PERFORMANCE_DATA, "Global", NULL, NULL, pdata, &nSize);

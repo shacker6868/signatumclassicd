@@ -121,7 +121,7 @@ void Shutdown()
 //
 // Signal handlers are very limited in what they are allowed to do, so:
 //
-void HandleSIGCERM(int)
+void HandleSIGTERM(int)
 {
     fRequestShutdown = true;
 }
@@ -315,12 +315,12 @@ bool AppInit2(boost::thread_group& threadGroup)
     umask(077);
 
     // Clean shutdown on SIGCERM
-    struct sigaction sa;
-    sa.sa_handler = HandleSIGCERM;
+     struct sigaction sa;
+    sa.sa_handler = HandleSIGTERM;
     sigemptyset(&sa.sa_mask);
     sa.sa_flags = 0;
-    sigaction(SIGCERM, &sa, NULL);
-    sigaction(SIGINT, &sa, NULL);
+    sigaction(SIGTERM, &sa, NULL);
+sigaction(SIGINT, &sa, NULL);
 
     // Reopen debug.log on SIGHUP
     struct sigaction sa_hup;

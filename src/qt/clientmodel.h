@@ -57,8 +57,8 @@ private:
 
     QTimer *pollTimer;
 
-    void subscribeToCoreSignals();
-    void unsubscribeFromCoreSignals();
+    void susigcribeToCoreSignals();
+    void unsusigcribeFromCoreSignals();
 
 signals:
     void numConnectionsChanged(int count);

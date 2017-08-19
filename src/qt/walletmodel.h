@@ -146,8 +146,8 @@ private:
 
     QTimer *pollTimer;
 
-    void subscribeToCoreSignals();
-    void unsubscribeFromCoreSignals();
+    void susigcribeToCoreSignals();
+    void unsusigcribeFromCoreSignals();
     void checkBalanceChanged();
 
 
